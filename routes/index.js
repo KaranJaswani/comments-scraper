@@ -9,14 +9,14 @@ router.get('/', function(req, res, next) {
 
 router.post('/get-comments', function(req, res, next) {
 
-  var response;
-  scraper.comments(req.body.url).then(function(rsp) {
-    response = rsp;
+    var response =  scraper.comments(req.body.url).then(function(rsp) {
+    return rsp;
     console.log(rsp);
     // Close scraper.
     scraper.close();
   });
 
+  console.log("response:" + response);
   res.render('comments', {comments: response});
 });
 
